@@ -1,1 +1,419 @@
-MTNeuro
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>MTNeuro</title>
+        <link rel="stylesheet" type="text/css" href="styles.css" />
+    </head>
+    <body>
+        <div id="headers">
+            <h1><strong>MTNeuro: A Benchmark for Evaluating Representations of Brain Structure Across Multiple Levels of Abstraction</strong></h1>
+            <h3>Jorge Quesada <sup>1</sup>, Lakshmi Sathidevi <sup>1</sup>, Ran Liu <sup>1</sup>, Joy M. Jackson <sup>1</sup>, Jingyun Xiao <sup>1</sup>, Nauman Ahad <sup>1</sup>,Mehdi Azabou <sup>1</sup>, Christopher Liding <sup>1</sup>, Carolina Urzay <sup>1</sup>, William Gray-Roncal <sup>2</sup>, Erik C. Johnson <sup>2</sup>, Eva L. Dyer <sup>1</sup></h3>
+            <h4><sup>1</sup> Georgia Institute of Technology</h4>
+            <h4><sup>2</sup> Johns Hopkins Applied Physics Laboratory</h4>
+            <h2><strong>Paper:</strong> [Link] <strong>Code:</strong> [GitHub] <strong>Dataset:</strong> [<a href="https://github.com/nerdslab/xray-thc">Github</a>, <a href="https://bossdb.org/project/prasad2020">BossDB</a>]</h2>
+        </div>
+        <br>
+        <p><img src="images/overview.PNG#main-img" alt="Overview"></p>
+        <hr>
+        <h2><strong>Abstract</strong></h2>
+        <p>There are multiple scales of abstraction from which we can describe the same image, depending on whether we are focusing on fine-grained details or a more global attribute of the image. In brain mapping, learning to automatically parse through images to build representations of <em>both</em> pixel-level features (e.g.,  cell count and size) and global properties of an image (e.g., source brain region) is a crucial and open challenge. However, most existing datasets and benchmarks for neuroanatomy consider only a single downstream task at a time and are often restricted to 2D data. In this paper, we introduce a new dataset, annotations, and multiple downstream tasks that provide diverse ways to readout information about brain structure and architecture from the same image. Our multi-task neuroimaging benchmark (<code>MTNeuro</code>), is built on volumetric, micrometer-resolution X-ray microtomography imaging of a large thalamocortical section of mouse brain encompassing multiple cortical and subcortical regions, that reveals dense reconstructions of the underlying microstructure (i.e., cell bodies, vasculature, and axons). We generated a number of different prediction challenges  and evaluated several models for brain-region prediction and pixel-level semantic segmentation of microstructures. We anticipate this benchmark  will accelerate the development of models that can process large-scale volumetric brain imaging data.</p>
+        <hr>
+        <h2><strong>Key Features</strong></h2>
+        <ul>
+            <li><strong>Three Dimensional Multi-Scale Annotated Dataset:</strong>  The 3D x-ray microtomography dataset spans multiple brain areas and includes region of interest (ROI) annotations, densely annotated 3D cutouts, and semantic interpretable features.</li>
+            <li><strong>Multi-Level Benchmark Tasks:</strong> Benchmark tasks feature both microscopic and macroscopic classification objectives.</li>
+            <li><strong>Evaluation of Model Baselines:</strong> Both 2D and 3D training regimes are considered when training supervised and unsupervised models.</li>
+        </ul>
+        <hr>
+        <h2><strong>Dataset</strong></h2>
+        <p>We built our benchmark tasks on a large open access high-resolution (1.17μm isotropic) 3D microscopy database, which contains <strong>macroscopic-level ROI annotations</strong>, as well as 4 three-dimensional 256 × 256 × 360 cutouts from the somatosensory cortex (CTX), striatum (STR), ventral posterior region of thalamus (VP), and the zona incerta (ZI). These volumetric cutouts contain <strong>pixel-level microstuctural labels</strong>, identifying each point as either part of an axon, cell, blood vessel, or background.</p>
+        <p>The dataset and all corresponding labels are stored publicly in <a href="https://bossdb.org/project/prasad2020">BossDB</a> and accessed on-demand with <a href="https://pypi.org/project/intern/">Intern</a>, a Python API library.</p>
+        <p>Provided are a <strong>PyTorch DataLoader</strong> for convenient algorithm
+        development and testing, and example <a href="https://github.com/nerdslab/xray-thc/tree/master/data_access_notebooks">Jupyter notebooks</a> to assist with downloading the task cutouts in other frameworks.</p>
+        <p><img src="images/dataset.PNG#dataset-img" alt="Dataset"></p>
+        <hr>
+        <h2><strong>Benchmark Tasks</strong></h2>
+        <p><img src="images/tasks.PNG#tasks-img" alt="Tasks"></p>
+        <br>
+        <table>
+            <thead>
+                <tr>
+                    <th>Task</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1. Image-Level Classification of Brain Area</td>
+                    <td>Given the volumetric cutouts of each region of interest (ROI), predict the region of interests of a set of other volumes.</td>
+                </tr>
+                <tr>
+                    <td>2. Pixel-level Segmentation of Microstructures</td>
+                    <td>Given the pixel-level labels corresponding to the neural microarchitecture of the four volumetric cutouts, classify each pixel in a set of other volumes as cell bodies, blood vessels, axons, or background.</td>
+                </tr>
+                <tr>
+                    <td>3. Multi-task Decoding from Frozen Representations</td>
+                    <td>Provide representations to predict semantic image properties such as blood vessel pixels, cell counts, axon density, and average distance between cells.</td>
+                </tr>
+            </tbody>
+        </table>
+        <p id="task-caption">An overview of the three benchmark tasks. <strong>Click</strong> each row for more information. (Not implemented yet)</p>
+        <hr>
+        <h2><strong>Evaluation of Model Baselines</strong></h2>
+        <h3><strong>Task 1</strong>: Image-Level Classification of Brain Area</h3>
+        <p>C1: Trained and tested in one subvolume, splitting across sections.<br> C2: Tested on new volumes unseen during train (3 cubes/ROI).<br> C3: Trained on two cubes and tested on the remaining 2 heldout subvolumes (in each ROI).</p>
+        <table>
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>ROI - C1</th>
+                    <th>ROI - C2</th>
+                    <th>ROI - C3</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Supervised<br>Sup w/ Mixup</td>
+                    <td>0.88 ± 0.03<br>0.90 ± 0.04</td>
+                    <td>0.77 ± 0.04<br>0.78 ± 0.04</td>
+                    <td>0.88 ± 0.02<br>0.90 ± 0.02</td>
+                </tr>
+                <tr>
+                    <td>BYOL<br>MYOW<br>MYOW-m</td>
+                    <td>0.88 ± 0.02<br>0.90 ± 0.02<br>0.94 ± 0.02</td>
+                    <td>0.75 ± 0.03<br>0.77 ± 0.06<br>0.76 ± 0.04</td>
+                    <td>0.97 ± 0.01<br>0.98 ± 0.01<br>0.98 ± 0.01</td>
+                </tr>
+                <tr>
+                    <td>PCA<br>NMF</td>
+                    <td>0.59<br>0.62</td>
+                    <td>0.24<br>0.25</td>
+                    <td>0.07<br>0.50</td>
+                </tr>
+            </tbody>
+        </table>
+        <br>
+        <!-- OLD TABLES
+
+        <table>
+        <caption><h4>Small-Scale Evaluation</h4></caption> 
+        <thead>
+        <tr>
+        <th rowspan=2></th>
+        <th colspan=3>2D Classification</th>
+        <th>3D Classification</th>
+        </tr>
+        <tr>
+        <th>Downsampling = 4</th>
+        <th>Downsampling = 2</th>
+        <th>Full Res</th>
+        <th>Downsampling = 2</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+        <td>Resnet18<br>Resnet18-Mixup<br>EfficientNet<br>ViT</td>
+        <td>0.83 ± 0.06<br>0.85 ± 0.06<br>0.94 ±<br>±</td>
+        <td>0.88 ± 0.03<br>0.90 ± 0.04<br>0.97 ±<br>±</td>
+        <td>0.87 ± 0.10<br>0.91 ± 0.03<br>0.79 ±<br>±</td>
+        <td>0.96 ± 0.01<br>0.97 ± 0.02<br>±<br>±</td>
+        </tr>
+        <tr>
+        <td>BYOL (Crop)<br>MYOW (Crop)<br>MYOW-m (Crop)</td>
+        <td>0.83 ± 0.04<br>0.84 ± 0.04<br>0.84 ± 0.05</td>
+        <td>0.88 ± 0.02<br>0.90 ± 0.02<br>0.94 ± 0.02</td>
+        <td>0.98 ± 0.01<br>0.96 ± 0.03<br>0.99 ± 0.01</td>
+        <td>0.96 ± 0.02<br>0.96 ± 0.02<br>0.97 ± 0.01</td>
+        </tr>
+        <tr>
+        <td>BYOL (All)<br>MYOW (All)<br>MYOW-m (All)</td>
+        <td>0.86 ± 0.06<br>0.85 ± 0.06<br>0.88 ± 0.03</td>
+        <td>0.95 ± 0.02<br>0.94 ± 0.02<br>0.96 ± 0.02</td>
+        <td>0.99 ± 0.01<br>--<br>--</td>
+        <td>0.97 ± 0.01<br>0.97 ± 0.01<br>0.98 ± 0.01</td>
+        </tr>
+        </tbody>
+        </table>
+
+        <br>
+
+        <table>
+        <caption><h4>Large-Scale Evaluation</h4></caption>
+        <thead>
+        <tr>
+        <th></th>
+        <th>2D Classification</th>
+        <th>3D Classification</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+        <td>Resnet18<br>Resnet18-Mixup</td>
+        <td></td>
+        <td></td>
+        </tr>
+        <tr>
+        <td>BYOL (Crop)<br>MYOW (Crop)<br>MYOW-m (Crop)</td>
+        <td>0.75 ± 0.03<br>0.77 ± 0.06<br>0.76 ± 0.04<br></td>
+        <td></td>
+        </tr>
+        <tr>
+        <td>BYOL (All)<br>MYOW (All)<br>MYOW-m (All)</td>
+        <td>0.81 ± 0.03<br>0.80 ± 0.03<br>0.82 ± 0.03</td>
+        <td></td>
+        </tr>
+        </tbody>
+        </table>
+
+        -->
+        <br>
+        <h3><strong>Task 2</strong>: Pixel-level Segmentation of Microstructures</h3>
+        <table>
+            <caption><h4>2D Pixel-level Segmentation</h4></caption> 
+            <thead>
+                <tr>
+                    <th></th>
+                    <th colspan=4>3-Class</th>
+                    <th colspan=5>4-Class without ZI</th>
+                    </tr>
+                    <tr class="small-font">
+                    <th style="width:16%">Method</th>
+                    <th>Bg + Axons</th>
+                    <th>Vessels</th>
+                    <th>Cells</th>
+                    <th>Avg.</th>
+                    <th>Bg</th>
+                    <th>Vessels</th>
+                    <th>Cells</th>
+                    <th>Axons</th>
+                    <th>Avg.</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="small-font">
+                    <td>2D U-Net (F1)<br>2D U-Net (IoU)</td>
+                    <td>0.988<br>0.98</td>
+                    <td>0.76<br>0.64</td>
+                    <td>0.85<br>0.75</td>
+                    <td>0.87 ± 0.010<br>0.79 ± 0.011</td>
+                    <td>0.97<br>0.88</td>
+                    <td>0.82<br>0.70</td>
+                    <td>0.87<br>0.77</td>
+                    <td>0.94<br>0.61</td>
+                    <td>0.90 ± 0.002<br>0.74 ± 0.003</td>
+                </tr>
+                <tr class="small-font">
+                    <td>MAnet (F1)<br>MAnet (IoU)</td>
+                    <td>0.99<br>0.98</td>
+                    <td>0.79<br>0.68</td>
+                    <td>0.87<br>0.78</td>
+                    <td>0.88 ± 0.002<br>0.81 ± 0.001</td>
+                    <td>0.97<br>0.88</td>
+                    <td>0.83<br>0.71</td>
+                    <td>0.87<br>0.77</td>
+                    <td>0.94<br>0.77</td>
+                    <td>0.90 ± 0.001<br>0.78 ± 0.006</td>
+                </tr>
+                <tr class="small-font">
+                    <td>FPN (F1)<br>FPN (IoU)</td>
+                    <td>0.99<br>0.97</td>
+                    <td>0.71<br>0.59</td>
+                    <td>0.84<br>0.73</td>
+                    <td>0.85 ± 0.009<br>0.76 ± 0.013</td>
+                    <td>0.96<br>0.86</td>
+                    <td>0.73<br>0.59</td>
+                    <td>0.83<br>0.72</td>
+                    <td>0.93<br>0.72</td>
+                    <td>0.86 ± 0.003<br>0.72 ± 0.014</td>
+                </tr>
+                <tr class="small-font">
+                    <td>Unet++ (F1)<br>Unet++ (IoU)</td>
+                    <td>0.99<br>0.98</td>
+                    <td>0.79<br>0.68</td>
+                    <td>0.87<br>0.78</td>
+                    <td>0.88 ± 0.001<br>0.81 ± 0.002</td>
+                    <td>0.96<br>0.87</td>
+                    <td>0.81<br>0.68</td>
+                    <td>0.85<br>0.74</td>
+                    <td>0.93<br>0.74</td>
+                    <td>0.89 ± 0.013<br>0.76 ± 0.030</td>
+                </tr>
+                <tr class="small-font">
+                    <td>PAN (F1)<br>PAN (IoU)</td>
+                    <td>0.97<br>0.94</td>
+                    <td>0.47<br>0.36</td>
+                    <td>0.64<br>0.53</td>
+                    <td>0.63 ± 0.316<br>0.61 ± 0.160</td>
+                    <td>0.95<br>0.84</td>
+                    <td>0.68<br>0.52</td>
+                    <td>0.80<br>0.66</td>
+                    <td>0.93<br>0.77</td>
+                    <td>0.84 ± 0.005<br>0.70 ± 0.010</td>
+                </tr>
+                <tr class="small-font">
+                    <td>PSPNet (F1)<br>PSPNet (IoU)</td>
+                    <td>0.97<br>0.93</td>
+                    <td>0.48<br>0.37</td>
+                    <td>0.74<br>0.58</td>
+                    <td>0.73 ± 0.012<br>0.62 ± 0.012</td>
+                    <td>0.94<br>0.82</td>
+                    <td>0.54<br>0.38</td>
+                    <td>0.71<br>0.55</td>
+                    <td>0.91<br>0.74</td>
+                    <td>0.78 ± 0.008<br>0.62 ± 0.009</td>
+                </tr>
+            </tbody>
+        </table>
+        <br>
+        <table>
+            <caption><h4>3D Pixel-level Segmentation</h4></caption> 
+            <thead>
+                <tr>
+                    <th></th>
+                    <th colspan=4>3-Class</th>
+                    <th colspan=5>4-Class without ZI</th>
+                    </tr>
+                    <tr class="small-font">
+                    <th style="width:16%">Method</th>
+                    <th>Bg + Axons</th>
+                    <th>Vessels</th>
+                    <th>Cells</th>
+                    <th>Avg.</th>
+                    <th>Bg</th>
+                    <th>Vessels</th>
+                    <th>Cells</th>
+                    <th>Axons</th>
+                    <th>Avg.</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="small-font">
+                    <td>3D U-Net (F1)<br>3D U-Net (IoU)</td>
+                    <td>0.99<br>0.97</td>
+                    <td>0.77<br>0.65</td>
+                    <td>0.87<br>0.76</td>
+                    <td>0.87 ± 0.006<br>0.80 ± 0.006</td>
+                    <td>0.89<br>0.76</td>
+                    <td>0.76<br>0.61</td>
+                    <td>0.81<br>0.68</td>
+                    <td>0.85<br>0.53</td>
+                    <td>0.83 ± 0.049<br>0.65 ± 0.045</td>
+                </tr>
+                <tr class="small-font">
+                    <td>VNetLight (F1)<br>VNetLight (IoU)</td>
+                    <td>0.99<br>0.97</td>
+                    <td>0.74<br>0.67</td>
+                    <td>0.83<br>0.70</td>
+                    <td>0.85 ± 0.011<br>0.76 ± 0.011</td>
+                    <td>0.67<br>0.70</td>
+                    <td>0.30<br>0.36</td>
+                    <td>0.63<br>0.57</td>
+                    <td>0.73<br>0.46</td>
+                    <td>0.58 ± 0.125<br>0.42 ± 0.103</td>
+                </tr>
+                <tr class="small-font">
+                    <td>HighResNet (F1)<br>HighResNet (IoU)</td>
+                    <td>0.98<br>0.96</td>
+                    <td>0.66<br>0.51</td>
+                    <td>0.79<br>0.65</td>
+                    <td>0.81 ± 0.046<br>0.71 ± 0.058</td>
+                    <td>0.88<br>0.70</td>
+                    <td>0.51<br>0.36</td>
+                    <td>0.72<br>0.57</td>
+                    <td>0.79<br>0.46</td>
+                    <td>0.72 ± 0.067<br>0.52 ± 0.051</td>
+            </tbody>
+        </table>
+        <br>
+        <h3><strong>Task 3</strong>: Multi-task Decoding from Frozen Representations</h3>
+        <table>
+            <caption><h4>Linear Readouts from Models Trained on a Single Subvolume (ROI-C1)</h4></caption>
+            <thead>
+                <tr>
+                    <th>Method</th>
+                    <th>Vessels</th>
+                    <th>Axons</th>
+                    <th>Cell Count</th>
+                    <th>Cell Size</th>
+                    <th>Dist (k=1)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Supervised<br>Sup w/ Mixup</td>
+                    <td>0.77 ± 0.06<br>0.82 ± 0.02</td>
+                    <td>0.94 ± 0.01<br>0.95 ± 0.00</td>
+                    <td>0.67 ± 0.06<br>0.71 ± 0.02</td>
+                    <td>0.61 ± 0.05<br>0.67 ± 0.03</td>
+                    <td>0.48 ± 0.05<br>0.47 ± 0.02</td>
+                </tr>
+                <tr>
+                    <td>BYOL<br>MYOW<br>MYOW-m</td>
+                    <td>0.85 ± 0.01<br>0.85 ± 0.01<br>0.87 ± 0.01</td>
+                    <td>0.94 ± 0.01<br>0.94 ± 0.01<br>0.95 ± 0.01</td>
+                    <td>0.75 ± 0.01<br>0.74 ± 0.01<br>0.77 ± 0.01</td>
+                    <td>0.69 ± 0.01<br>0.69 ± 0.01<br>0.69 ± 0.01</td>
+                    <td>0.49 ± 0.01<br>0.50 ± 0.02<br>0.51 ± 0.01</td>
+                </tr>
+                <tr>
+                    <td>PCA<br>NMF</td>
+                    <td>0.75<br>0.81</td>
+                    <td>0.82<br>0.85</td>
+                    <td>0.55<br>0.59</td>
+                    <td>0.47<br>0.55</td>
+                    <td>0.31<br>0.34</td>
+                </tr>
+            </tbody>
+        </table>
+        <br>
+        <table>
+            <caption><h4>Linear Readouts from Models Trained on Two Subvolumes (ROI-C3)</h4></caption>
+            <thead>
+                <tr>
+                    <th>Method</th>
+                    <th>Vessels</th>
+                    <th>Axons</th>
+                    <th>Cell Count</th>
+                    <th>Cell Size</th>
+                    <th>Dist (k=1)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Supervised<br>Sup w/ Mixup</td>
+                    <td>0.79 ± 0.02<br>0.75 ± 0.04</td>
+                    <td>0.94 ± 0.02<br>0.88 ± 0.04</td>
+                    <td>0.73 ± 0.02<br>0.64 ± 0.04</td>
+                    <td>0.63 ± 0.04<br>0.54 ± 0.07</td>
+                    <td>0.49 ± 0.02<br>0.37 ± 0.05</td>
+                </tr>
+                <tr>
+                    <td>BYOL<br>MYOW<br>MYOW-m</td>
+                    <td>0.88 ± 0.00<br>0.88 ± 0.01<br>0.87 ± 0.01</td>
+                    <td>0.96 ± 0.00<br>0.96 ± 0.00<br>0.96 ± 0.01</td>
+                    <td>0.79 ± 0.00<br>0.79 ± 0.01<br>0.78 ± 0.01</td>
+                    <td>0.73 ± 0.01<br>0.72 ± 0.01<br>0.72 ± 0.01</td>
+                    <td>0.53 ± 0.02<br>0.52 ± 0.01<br>0.53 ± 0.01</td>
+                </tr>
+                <tr>
+                    <td>PCA<br>NMF</td>
+                    <td>0.75<br>0.75</td>
+                    <td>0.82<br>0.83</td>
+                    <td>0.53<br>0.56</td>
+                    <td>0.46<br>0.49</td>
+                    <td>0.29<br>0.31</td>
+                </tr>
+            </tbody>
+        </table>
+        <br>
+        <hr>
+        <h2><strong>Citation</strong></h2>
+        <p>If you use our dataset or any of our benchmark tasks in your work, please cite our paper:</p>
+        <pre><code>(Paper citation)
+        </code></pre>
+        <hr>
+        <h2><strong>License</strong></h2>
+        <p>The dataset is licensed under (our license).</p>
+        <hr>
+    </body>
+</html>
