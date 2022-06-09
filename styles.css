@@ -37,18 +37,18 @@ tr:hover {background-color: #f2f2f2;}
     padding: 2px;
 }
 
-img[src*="#main-img"] {
+#intern-dataloader-img {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    width: 80%;
+    width: 95%;
 }
 
-img[src*="#dataset-img"] {
+#dataset-img {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    width: 60%;
+    width: 90%;
 }
 
 img[src*="#tasks-img"] {
@@ -56,6 +56,13 @@ img[src*="#tasks-img"] {
     margin-left: auto;
     margin-right: auto;
     width: 90%;
+}
+
+#dataset2 {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
 }
 
 .small-font {

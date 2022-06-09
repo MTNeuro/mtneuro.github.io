@@ -7,16 +7,17 @@
     <body>
         <div id="headers">
             <h1><strong>MTNeuro: A Benchmark for Evaluating Representations of Brain Structure Across Multiple Levels of Abstraction</strong></h1>
-            <h3>Jorge Quesada <sup>1</sup>, Lakshmi Sathidevi <sup>1</sup>, Ran Liu <sup>1</sup>, Joy M. Jackson <sup>1</sup>, Jingyun Xiao <sup>1</sup>, Nauman Ahad <sup>1</sup>,Mehdi Azabou <sup>1</sup>, Christopher Liding <sup>1</sup>, Carolina Urzay <sup>1</sup>, William Gray-Roncal <sup>2</sup>, Erik C. Johnson <sup>2</sup>, Eva L. Dyer <sup>1</sup></h3>
+            <h3>Jorge Quesada <sup>1</sup>, Lakshmi Sathidevi <sup>1</sup>, Ran Liu <sup>1</sup>, Joy M. Jackson <sup>1</sup>, Jingyun Xiao <sup>1</sup>, Nauman Ahad <sup>1</sup>, Mehdi Azabou <sup>1</sup>, Christopher Liding <sup>1</sup>, Carolina Urzay <sup>1</sup>, William Gray-Roncal <sup>2</sup>, Erik C. Johnson <sup>2</sup>, Eva L. Dyer <sup>1</sup></h3>
             <h4><sup>1</sup> Georgia Institute of Technology</h4>
             <h4><sup>2</sup> Johns Hopkins Applied Physics Laboratory</h4>
-            <h2><strong>Paper:</strong> [Link] <strong>Code:</strong> [GitHub] <strong>Dataset:</strong> [<a href="https://github.com/nerdslab/xray-thc">Github</a>, <a href="https://bossdb.org/project/prasad2020">BossDB</a>]</h2>
+            <h2><strong>Paper:</strong> [Link] <strong>Code:</strong> [<a href="https://github.com/MTNeuro/MTNeuro" target="_blank">Github</a>] <strong>Dataset:</strong> [<a href="https://github.com/nerdslab/xray-thc" target="_blank">Github</a>, <a href="https://bossdb.org/project/prasad2020" target="_blank">BossDB</a>]</h2>
         </div>
         <br>
-        <p><img src="images/overview.png#main-img" alt="Overview"></p>
+        <p><img src="images/dataset.png" alt="Dataset" id="dataset-img"></p>
+        <p><img src="images/dataset2.png" alt="Brain Regions" id="dataset2"></p>
         <hr>
         <h2><strong>Abstract</strong></h2>
-        <p>There are multiple scales of abstraction from which we can describe the same image, depending on whether we are focusing on fine-grained details or a more global attribute of the image. In brain mapping, learning to automatically parse through images to build representations of <em>both</em> pixel-level features (e.g.,  cell count and size) and global properties of an image (e.g., source brain region) is a crucial and open challenge. However, most existing datasets and benchmarks for neuroanatomy consider only a single downstream task at a time and are often restricted to 2D data. In this paper, we introduce a new dataset, annotations, and multiple downstream tasks that provide diverse ways to readout information about brain structure and architecture from the same image. Our multi-task neuroimaging benchmark (<code>MTNeuro</code>), is built on volumetric, micrometer-resolution X-ray microtomography imaging of a large thalamocortical section of mouse brain encompassing multiple cortical and subcortical regions, that reveals dense reconstructions of the underlying microstructure (i.e., cell bodies, vasculature, and axons). We generated a number of different prediction challenges  and evaluated several models for brain-region prediction and pixel-level semantic segmentation of microstructures. We anticipate this benchmark  will accelerate the development of models that can process large-scale volumetric brain imaging data.</p>
+        <p>There are multiple scales of abstraction from which we can describe the same image, depending on whether we are focusing on fine-grained details or a more global attribute of the image. In brain mapping, learning to automatically parse  images to build representations of <em>both</em> small-scale features (e.g., the presence of cells or blood vessels) and global properties of an image (e.g., source brain region) is a crucial and open challenge. However, most existing datasets and benchmarks for neuroanatomy consider only a single downstream task at a time. We introduce a new dataset, annotations, and multiple downstream tasks that provide diverse ways to readout information about brain structure and architecture from the same image. Our multi-task neuroimaging benchmark (MTNeuro) is built on volumetric, micrometer-resolution X-ray microtomography imaging of a large thalamocortical section of mouse brain, encompassing multiple cortical and subcortical regions, that reveals dense reconstructions of the underlying microstructure (i.e., cell bodies, vasculature, and axons). We generated a number of different prediction challenges and evaluated several supervised and self-supervised models for brain-region prediction and pixel-level semantic segmentation of microstructures.  Our experiments not only highlight the rich heterogeneity of this dataset, but also provide insights into how self-supervised approaches can be used to learn representations that  capture multiple attributes of a single image and perform well on a variety of downstream tasks.</p>
         <hr>
         <h2><strong>Key Features</strong></h2>
         <ul>
@@ -27,10 +28,10 @@
         <hr>
         <h2><strong>Dataset</strong></h2>
         <p>We built our benchmark tasks on a large open access high-resolution (1.17μm isotropic) 3D microscopy database, which contains <strong>macroscopic-level ROI annotations</strong>, as well as 4 three-dimensional 256 × 256 × 360 cutouts from the somatosensory cortex (CTX), striatum (STR), ventral posterior region of thalamus (VP), and the zona incerta (ZI). These volumetric cutouts contain <strong>pixel-level microstuctural labels</strong>, identifying each point as either part of an axon, cell, blood vessel, or background.</p>
-        <p>The dataset and all corresponding labels are stored publicly in <a href="https://bossdb.org/project/prasad2020">BossDB</a> and accessed on-demand with <a href="https://pypi.org/project/intern/">Intern</a>, a Python API library.</p>
+        <p>The dataset and all corresponding labels are stored publicly in <a href="https://bossdb.org/project/prasad2020" target="_blank">BossDB</a> and accessed on-demand with <a href="https://pypi.org/project/intern/" target="_blank">Intern</a>, a Python API library.</p>
         <p>Provided are a <strong>PyTorch DataLoader</strong> for convenient algorithm
-        development and testing, and example <a href="https://github.com/nerdslab/xray-thc/tree/master/data_access_notebooks">Jupyter notebooks</a> to assist with downloading the task cutouts in other frameworks.</p>
-        <p><img src="images/dataset.png#dataset-img" alt="Dataset"></p>
+        development and testing, and example <a href="https://github.com/nerdslab/xray-thc/tree/master/data_access_notebooks" target="_blank">Jupyter notebooks</a> to assist with downloading the task cutouts in other frameworks.</p>
+        <p><img src="images/intern_and_dataloader.png" alt="Intern and DataLoader" id="intern-dataloader-img"></p>
         <hr>
         <h2><strong>Benchmark Tasks</strong></h2>
         <p><img src="images/tasks.png#tasks-img" alt="Tasks"></p>
@@ -92,80 +93,7 @@
                 </tr>
             </tbody>
         </table>
-        <br>
-        <!-- OLD TABLES
-
-        <table>
-        <caption><h4>Small-Scale Evaluation</h4></caption> 
-        <thead>
-        <tr>
-        <th rowspan=2></th>
-        <th colspan=3>2D Classification</th>
-        <th>3D Classification</th>
-        </tr>
-        <tr>
-        <th>Downsampling = 4</th>
-        <th>Downsampling = 2</th>
-        <th>Full Res</th>
-        <th>Downsampling = 2</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-        <td>Resnet18<br>Resnet18-Mixup<br>EfficientNet<br>ViT</td>
-        <td>0.83 ± 0.06<br>0.85 ± 0.06<br>0.94 ±<br>±</td>
-        <td>0.88 ± 0.03<br>0.90 ± 0.04<br>0.97 ±<br>±</td>
-        <td>0.87 ± 0.10<br>0.91 ± 0.03<br>0.79 ±<br>±</td>
-        <td>0.96 ± 0.01<br>0.97 ± 0.02<br>±<br>±</td>
-        </tr>
-        <tr>
-        <td>BYOL (Crop)<br>MYOW (Crop)<br>MYOW-m (Crop)</td>
-        <td>0.83 ± 0.04<br>0.84 ± 0.04<br>0.84 ± 0.05</td>
-        <td>0.88 ± 0.02<br>0.90 ± 0.02<br>0.94 ± 0.02</td>
-        <td>0.98 ± 0.01<br>0.96 ± 0.03<br>0.99 ± 0.01</td>
-        <td>0.96 ± 0.02<br>0.96 ± 0.02<br>0.97 ± 0.01</td>
-        </tr>
-        <tr>
-        <td>BYOL (All)<br>MYOW (All)<br>MYOW-m (All)</td>
-        <td>0.86 ± 0.06<br>0.85 ± 0.06<br>0.88 ± 0.03</td>
-        <td>0.95 ± 0.02<br>0.94 ± 0.02<br>0.96 ± 0.02</td>
-        <td>0.99 ± 0.01<br>--<br>--</td>
-        <td>0.97 ± 0.01<br>0.97 ± 0.01<br>0.98 ± 0.01</td>
-        </tr>
-        </tbody>
-        </table>
-
-        <br>
-
-        <table>
-        <caption><h4>Large-Scale Evaluation</h4></caption>
-        <thead>
-        <tr>
-        <th></th>
-        <th>2D Classification</th>
-        <th>3D Classification</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-        <td>Resnet18<br>Resnet18-Mixup</td>
-        <td></td>
-        <td></td>
-        </tr>
-        <tr>
-        <td>BYOL (Crop)<br>MYOW (Crop)<br>MYOW-m (Crop)</td>
-        <td>0.75 ± 0.03<br>0.77 ± 0.06<br>0.76 ± 0.04<br></td>
-        <td></td>
-        </tr>
-        <tr>
-        <td>BYOL (All)<br>MYOW (All)<br>MYOW-m (All)</td>
-        <td>0.81 ± 0.03<br>0.80 ± 0.03<br>0.82 ± 0.03</td>
-        <td></td>
-        </tr>
-        </tbody>
-        </table>
-
-        -->
+    
         <br>
         <h3><strong>Task 2</strong>: Pixel-level Segmentation of Microstructures</h3>
         <table>
@@ -407,6 +335,8 @@
         </table>
         <br>
         <hr>
+
+    <!-- TODO: CITATION AND LICENSE
         <h2><strong>Citation</strong></h2>
         <p>If you use our dataset or any of our benchmark tasks in your work, please cite our paper:</p>
         <pre><code>(Paper citation)
@@ -415,5 +345,7 @@
         <h2><strong>License</strong></h2>
         <p>The dataset is licensed under (our license).</p>
         <hr>
+    -->
+
     </body>
 </html>
