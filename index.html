@@ -1,5 +1,17 @@
 <!DOCTYPE html>
 <html>
+
+    <!-- TO DO:
+    
+    Remove old data access Github links
+    Change data access Jupyter notebook links
+
+    Write footer with acknowledgements
+
+    Work on JavaScript!
+
+    -->
+
     <head>
         <title>MTNeuro</title>
         <link rel="stylesheet" type="text/css" href="styles.css" />
@@ -10,7 +22,7 @@
             <h3>Jorge Quesada <sup>1</sup>, Lakshmi Sathidevi <sup>1</sup>, Ran Liu <sup>1</sup>, Joy M. Jackson <sup>1</sup>, Jingyun Xiao <sup>1</sup>, Nauman Ahad <sup>1</sup>, Mehdi Azabou <sup>1</sup>, Christopher Liding <sup>1</sup>, Carolina Urzay <sup>1</sup>, William Gray-Roncal <sup>2</sup>, Erik C. Johnson <sup>2</sup>, Eva L. Dyer <sup>1</sup></h3>
             <h4><sup>1</sup> Georgia Institute of Technology</h4>
             <h4><sup>2</sup> Johns Hopkins Applied Physics Laboratory</h4>
-            <h2><strong>Paper:</strong> [Link] <strong>Code:</strong> [<a href="https://github.com/MTNeuro/MTNeuro" target="_blank">Github</a>] <strong>Dataset:</strong> [<a href="https://github.com/nerdslab/xray-thc" target="_blank">Github</a>, <a href="https://bossdb.org/project/prasad2020" target="_blank">BossDB</a>]</h2>
+            <h2><strong>Paper:</strong> [Link] <strong>Code:</strong> [<a href="https://github.com/MTNeuro/MTNeuro" target="_blank">Github</a>] <strong>Dataset:</strong> [<a href="https://bossdb.org/project/prasad2020" target="_blank">BossDB</a>]</h2>
         </div>
         <br>
         <p><img src="images/dataset.png" alt="Dataset" id="dataset-img"></p>
@@ -30,7 +42,7 @@
         <p>We built our benchmark tasks on a large open access high-resolution (1.17μm isotropic) 3D microscopy database, which contains <strong>macroscopic-level ROI annotations</strong>, as well as 4 three-dimensional 256 × 256 × 360 cutouts from the somatosensory cortex (CTX), striatum (STR), ventral posterior region of thalamus (VP), and the zona incerta (ZI). These volumetric cutouts contain <strong>pixel-level microstuctural labels</strong>, identifying each point as either part of an axon, cell, blood vessel, or background.</p>
         <p>The dataset and all corresponding labels are stored publicly in <a href="https://bossdb.org/project/prasad2020" target="_blank">BossDB</a> and accessed on-demand with <a href="https://pypi.org/project/intern/" target="_blank">Intern</a>, a Python API library.</p>
         <p>Provided are a <strong>PyTorch DataLoader</strong> for convenient algorithm
-        development and testing, and example <a href="https://github.com/nerdslab/xray-thc/tree/master/data_access_notebooks" target="_blank">Jupyter notebooks</a> to assist with downloading the task cutouts in other frameworks.</p>
+        development and testing, and example <strong>Jupyter Notebooks</strong> to assist with downloading the task cutouts in other frameworks.</p>
         <p><img src="images/intern_and_dataloader.png" alt="Intern and DataLoader" id="intern-dataloader-img"></p>
         <hr>
         <h2><strong>Benchmark Tasks</strong></h2>
@@ -153,7 +165,10 @@
             </tbody>
         </table>
     
+        <p>Download the model weights for Task 1 here: [<a href="https://www.dropbox.com/sh/blxwr8r521vechs/AAAXSRYrWhOuPAoAy7S-c9Mla?dl=0" target="_blank">Dropbox</a>]</p>
+
         <br>
+
         <h3><strong>Task 2</strong>: Pixel-level Segmentation of Microstructures</h3>
         <table>
             <caption><h4>2D Pixel-level Segmentation</h4></caption> 
@@ -311,6 +326,9 @@
                     <td>0.72 ± 0.067<br>0.52 ± 0.051</td>
             </tbody>
         </table>
+
+        <p>Download the model weights for Task 2 here: [<a href="https://www.dropbox.com/sh/supt3s91m8hg0re/AAC9W-ai48-JeTNkV9PoJTcra?dl=0" target="_blank">Dropbox</a>]</p>
+
         <br>
         <h3><strong>Task 3</strong>: Multi-task Decoding from Frozen Representations</h3>
         <table>
