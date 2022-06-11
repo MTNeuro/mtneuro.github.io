@@ -15,13 +15,13 @@
     <head>
         <title>MTNeuro</title>
         <link rel="stylesheet" type="text/css" href="styles.css" />
+        <link rel="icon" type="image/x-icon" href="images/favicon.ico">
     </head>
     <body>
         <div id="headers">
             <h1><strong>MTNeuro: A Benchmark for Evaluating Representations of Brain Structure Across Multiple Levels of Abstraction</strong></h1>
             <h3>Jorge Quesada <sup>1</sup>, Lakshmi Sathidevi <sup>1</sup>, Ran Liu <sup>1</sup>, Joy M. Jackson <sup>1</sup>, Jingyun Xiao <sup>1</sup>, Nauman Ahad <sup>1</sup>, Mehdi Azabou <sup>1</sup>, Christopher Liding <sup>1</sup>, Carolina Urzay <sup>1</sup>, William Gray-Roncal <sup>2</sup>, Erik C. Johnson <sup>2</sup>, Eva L. Dyer <sup>1</sup></h3>
-            <h4><sup>1</sup> Georgia Institute of Technology</h4>
-            <h4><sup>2</sup> Johns Hopkins Applied Physics Laboratory</h4>
+            <h4><sup>1</sup> Georgia Institute of Technology<br><sup>2</sup> Johns Hopkins Applied Physics Laboratory</h4>
             <h2><strong>Paper:</strong> [Link] <strong>Code:</strong> [<a href="https://github.com/MTNeuro/MTNeuro" target="_blank">Github</a>] <strong>Dataset:</strong> [<a href="https://bossdb.org/project/prasad2020" target="_blank">BossDB</a>]</h2>
         </div>
         <br>
@@ -37,6 +37,7 @@
             <li><strong>Multi-Level Benchmark Tasks:</strong> Benchmark tasks feature both microscopic and macroscopic classification objectives.</li>
             <li><strong>Evaluation of Model Baselines:</strong> Both 2D and 3D training regimes are considered when training supervised and unsupervised models.</li>
         </ul>
+        <br>
         <hr>
         <h2><strong>Dataset</strong></h2>
         <p>We built our benchmark tasks on a large open access high-resolution (1.17μm isotropic) 3D microscopy database, which contains <strong>macroscopic-level ROI annotations</strong>, as well as 4 three-dimensional 256 × 256 × 360 cutouts from the somatosensory cortex (CTX), striatum (STR), ventral posterior region of thalamus (VP), and the zona incerta (ZI). These volumetric cutouts contain <strong>pixel-level microstuctural labels</strong>, identifying each point as either part of an axon, cell, blood vessel, or background.</p>
@@ -423,6 +424,21 @@
         <p>The dataset is licensed under (our license).</p>
         <hr>
     -->
+
+    <br>
+    <div id="footer">
+        <div class="lab-flexbox">
+            <img src="images/nerds_logo.png" alt="NerDS Lab Logo" class="lab-logo">
+            <p>Neural Data Science (NerDS) Lab, Georgia Institute of Technology</p>
+        </div>
+        <div class="lab-flexbox">
+            <img src="images/boss_logo.png" alt="BossDB Logo" class="lab-logo">
+            <p>Brain Observatory Storage Service & Database (BossDB), Johns Hopkins University</p>
+        </div>
+
+        <p>For inquiries, contact Eva L. Dyer (evadyer@gatech.edu), Erik C. Johnson (erik.c.johnson@jhuapl.edu), and Jorge Quesada (jpacora3@gatech.edu).</p>
+        <p>Website hosted with <a href="https://github.com/MTNeuro/mtneuro.github.io" target="_blank">Github</a>. Updated June 2022.</p>
+    </div>
 
     </body>
 </html>
