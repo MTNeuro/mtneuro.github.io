@@ -6,8 +6,6 @@
     Remove old data access Github links
     Change data access Jupyter notebook links
 
-    Write footer with acknowledgements
-
     Work on JavaScript!
 
     -->
@@ -57,80 +55,81 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
+                <tr class="clickable" onclick="task1()">
                     <td>1. Image-Level Classification of Brain Area</td>
-                    <td>Given the volumetric cutouts of each region of interest (ROI), predict the region of interests of a set of other volumes.</td>
+                    <td>Prediction of brain region from 2D and 3D cutouts of images</td>
                 </tr>
-                <tr>
+                <tr class="clickable" onclick="task2()">
                     <td>2. Pixel-level Segmentation of Microstructures</td>
-                    <td>Given the pixel-level labels corresponding to the neural microarchitecture of the four volumetric cutouts, classify each pixel in a set of other volumes as cell bodies, blood vessels, axons, or background.</td>
+                    <td>Prediction of 3 or 4 microstructures within 4 brain regions from pixel-level annotations</td>
                 </tr>
-                <tr>
+                <tr class="clickable" onclick="task3()">
                     <td>3. Multi-task Decoding from Frozen Representations</td>
-                    <td>Provide representations to predict semantic image properties such as blood vessel pixels, cell counts, axon density, and average distance between cells.</td>
+                    <td>Provide representations of human-interpretable semantic properties of volumes</td>
                 </tr>
             </tbody>
         </table>
 
-        <!-- Add again once JavaScript is implemented
-        <p id="task-caption">An overview of the three benchmark tasks. <strong>Click</strong> each row for more information. (Not implemented yet)</p>
-    -->
+        <p id="task-caption">An overview of the three benchmark tasks. <strong>Click</strong> each row for more information.</p>
 
-        <!-- TEMPORARY. Remove once JavaScript is implemented-->
+        <div id="task-1">
+            <h3><strong>Task 1</strong>: Image-Level Classification of Brain Area</h3>
+            <strong>Goal: </strong>Classification of 4 brain regions:
+            <ul>
+                    <li> ROI-C1: prediction of the origin brain region of a sample within a same subvolume
+                <li> ROI-C2: evaluation of generalization of the prediction with different test subvolumes
+                <li> ROI-C3: evaluation of performance of prediction when tested with more subvolumes
+            </ul>
+            <strong>Classes: </strong>Somatosensory Cortex (CTX), Striatum (STR), Thalamus (VP) and Zona Incerta (ZI)
+            <br>
+            <strong>Training sets:</strong>
+            <ul>
+                <li> ROI-C1: 256x256x300 sub-volumes A (blue) of the 4 brain regions
+                <li> ROI-C2: 256x256x300 sub-volumes A (blue) of the 4 brain regions
+                <li> ROI-C3: 256x256x300 sub-volumes A (blue) and 256x256x360 sub-volumes B (yellow) of the 4 brain regions
+            </ul>
+            <strong>Testing sets:</strong>
+            <ul>
+                <li> ROI-C1: 256x256x50 sub-volumes A of the 4 brain regions
+                <li> ROI-C2: 256x256x50 sub-volumes B, C and D of the 4 brain regions
+                <li> ROI-C3: 256x256x50 sub-volumes C and D of the 4 brain regions
+            </ul>
+            <strong>Modalities:</strong>
+            <ul>
+                <li> 3D classification: train with volumetric samples
+                <li> 2D classification: train with image samples (the third dimension corresponds to the sample index)
+            </ul>
+            <br>
+        </div>
 
-        <h3><strong>Task 1</strong>: Image-Level Classification of Brain Area</h3>
-        <strong>Goal: </strong>Classification of 4 brain regions:
-        <ul>
-                <li> ROI-C1: prediction of the origin brain region of a sample within a same subvolume
-            <li> ROI-C2: evaluation of generalization of the prediction with different test subvolumes
-            <li> ROI-C3: evaluation of performance of prediction when tested with more subvolumes
-        </ul>
-        <strong>Classes: </strong>Somatosensory Cortex (CTX), Striatum (STR), Thalamus (VP) and Zona Incerta (ZI)
-        <br>
-        <strong>Training sets:</strong>
-        <ul>
-            <li> ROI-C1: 256x256x300 sub-volumes A (blue) of the 4 brain regions
-            <li> ROI-C2: 256x256x300 sub-volumes A (blue) of the 4 brain regions
-            <li> ROI-C3: 256x256x300 sub-volumes A (blue) and 256x256x360 sub-volumes B (yellow) of the 4 brain regions
-        </ul>
-        <strong>Testing sets:</strong>
-        <ul>
-            <li> ROI-C1: 256x256x50 sub-volumes A of the 4 brain regions
-            <li> ROI-C2: 256x256x50 sub-volumes B, C and D of the 4 brain regions
-            <li> ROI-C3: 256x256x50 sub-volumes C and D of the 4 brain regions
-        </ul>
-        <strong>Modalities:</strong>
-        <ul>
-            <li> 3D classification: train with volumetric samples
-            <li> 2D classification: train with image samples (the third dimension corresponds to the sample index)
-        </ul>
-        <br>
+        <div id="task-2">
+            <h3><strong>Task 2</strong>: Pixel-level Segmentation of Microstructures</h3>
+            <strong>Goal: </strong>Segmentation of 3 or 4 anatomical microstructures at the level of pixels
+            <br>
+            <strong>Classes: </strong>
+            <ul>
+                <li> 3 class segmentation: cell bodies, blood vessels, and axons + background
+                <li> 4 class segmentation: cell bodies, blood vessels, axons, and background
+            </ul>
+            <strong>Training set:</strong> 256x256x300 sub-volumes of the 4 brain regions (3 regions (CTX, STR, VP) in the case of the 4 class segmentation)
+            <br>
+            <strong>Testing set:</strong> 256x256x50 sub-volumes of the 4 brain regions (3 regions (CTX, STR, VP) in the case of the 4 class segmentation)
+            <br>
+            <strong>Modality:</strong> 2D classification: train with image samples (the third dimension corresponds to the sample index)
+            <br>
+            <br>
+        </div>
 
-
-        <h3><strong>Task 2</strong>: Pixel-level Segmentation of Microstructures</h3>
-        <strong>Goal: </strong>Segmentation of 3 or 4 anatomical microstructures at the level of pixels
-        <br>
-        <strong>Classes: </strong>
-        <ul>
-            <li> 3 class segmentation: cell bodies, blood vessels, and axons + background
-            <li> 4 class segmentation: cell bodies, blood vessels, axons, and background
-        </ul>
-        <strong>Training set:</strong> 256x256x300 sub-volumes of the 4 brain regions (3 regions (CTX, STR, VP) in the case of the 4 class segmentation)
-        <br>
-        <strong>Testing set:</strong> 256x256x50 sub-volumes of the 4 brain regions (3 regions (CTX, STR, VP) in the case of the 4 class segmentation)
-        <br>
-        <strong>Modality:</strong> 2D classification: train with image samples (the third dimension corresponds to the sample index)
-        <br>
-        <br>
-
-        <h3><strong>Task 3</strong>: Multi-task Decoding from Frozen Representations</h3>
-        <strong>Goal: </strong>Learn representations to observe how well they encode semantic properties of volumes or how relevant these features are for a specific downstream task
-        <br>
-        <strong>Semantic properties examples: </strong>blood vessels pixels, cell counts, axon density and average distance between cells
-        <br>
-        <strong>Modality: </strong>Exploration of readout of contextual features from the latent space learned by self-supervised models in Task 1
-        <br>
-        <br>
+        <div id="task-3">
+            <h3><strong>Task 3</strong>: Multi-task Decoding from Frozen Representations</h3>
+            <strong>Goal: </strong>Learn representations to observe how well they encode semantic properties of volumes or how relevant these features are for a specific downstream task
+            <br>
+            <strong>Semantic properties examples: </strong>blood vessels pixels, cell counts, axon density and average distance between cells
+            <br>
+            <strong>Modality: </strong>Exploration of readout of contextual features from the latent space learned by self-supervised models in Task 1
+            <br>
+            <br>
+        </div>
 
         <hr>
         <h2><strong>Evaluation of Model Baselines</strong></h2>
@@ -414,16 +413,20 @@
         <br>
         <hr>
 
-    <!-- TODO: CITATION AND LICENSE
+  
         <h2><strong>Citation</strong></h2>
-        <p>If you use our dataset or any of our benchmark tasks in your work, please cite our paper:</p>
-        <pre><code>(Paper citation)
-        </code></pre>
+        <p>If you find this dataset or benchmark useful in your research, please cite the following papers:</p>
+        <code>Prasad, J. A., Balwani, A. H., Johnson, E. C., Miano, J. D., Sampathkumar, V., De Andrade, V., ... & Dyer, E. L. (2020). A three-dimensional thalamocortical dataset for characterizing brain heterogeneity. Scientific Data, 7(1), 1-7.
+        </code>
+        <br>
+        <br>
         <hr>
+
         <h2><strong>License</strong></h2>
-        <p>The dataset is licensed under (our license).</p>
+        <p>This software is available under the <a href="https://opensource.org/licenses/MIT" target="_blank">MIT License</a>.<br>The X-ray Microtomography image dataset is licensed under Creative Commons Attribution 4.0 International (CC BY 4.0).</p>
+        <br>
         <hr>
-    -->
+
 
     <br>
 
@@ -441,5 +444,9 @@
         <p>Website hosted on <a href="https://github.com/MTNeuro/mtneuro.github.io" target="_blank">Github</a>. Updated June 2022.</p>
     </div>
 
+    <script src="task_descriptions.js"></script>
+
     </body>
+
+
 </html>
