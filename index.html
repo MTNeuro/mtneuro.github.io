@@ -18,11 +18,9 @@
     <body>
         <div id="headers">
             <h1><strong>MTNeuro: A Benchmark for Evaluating Representations of Brain Structure Across Multiple Levels of Abstraction</strong></h1>
-            <h3>Jorge Quesada <sup>1</sup>, Lakshmi Sathidevi <sup>1</sup>, Ran Liu <sup>1</sup>, Joy M. Jackson <sup>1</sup>, Jingyun Xiao <sup>1</sup>, Nauman Ahad <sup>1</sup>, Mehdi Azabou <sup>1</sup>, Christopher Liding <sup>1</sup>, Carolina Urzay <sup>1</sup>, William Gray-Roncal <sup>2</sup>, Erik C. Johnson <sup>2</sup>, Eva L. Dyer <sup>1</sup></h3>
-            <h4><sup>1</sup> Georgia Institute of Technology<br><sup>2</sup> Johns Hopkins Applied Physics Laboratory</h4>
+            <br>
             <h2><strong>Paper:</strong> [Link] <strong>Code:</strong> [<a href="https://github.com/MTNeuro/MTNeuro" target="_blank">Github</a>] <strong>Dataset:</strong> [<a href="https://bossdb.org/project/prasad2020" target="_blank">BossDB</a>]</h2>
         </div>
-        <br>
         <p><img src="images/dataset.png" alt="Dataset" id="dataset-img"></p>
         <p><img src="images/dataset2.png" alt="Brain Regions" id="dataset2-img"></p>
         <hr>
@@ -47,7 +45,7 @@
         <h2><strong>Benchmark Tasks</strong></h2>
         <p><img src="images/tasks.png" alt="Tasks" id="tasks-img"></p>
         <br>
-        <table>
+        <table style="width:100%">
             <thead>
                 <tr>
                     <th>Task</th>
@@ -57,15 +55,15 @@
             <tbody>
                 <tr class="clickable" onclick="task1()">
                     <td>1. Image-Level Classification of Brain Area</td>
-                    <td>Prediction of brain region from 2D and 3D cutouts of images</td>
+                    <td>Prediction of the brain region (somatosensory cortex, striatum, thalamus, zona incerta) to which a given image or volume belongs.</td>
                 </tr>
                 <tr class="clickable" onclick="task2()">
                     <td>2. Pixel-level Segmentation of Microstructures</td>
-                    <td>Prediction of 3 or 4 microstructures within 4 brain regions from pixel-level annotations</td>
+                    <td>Prediction of neural microstructures (blood vessels, axons, cell bodies, background) from pixel-level annotations within the four core brain regions contained in the dataset.</td>
                 </tr>
                 <tr class="clickable" onclick="task3()">
                     <td>3. Multi-task Decoding from Frozen Representations</td>
-                    <td>Provide representations of human-interpretable semantic properties of volumes</td>
+                    <td>Estimation of human-interpretable semantic features (such as the average cell size or axon density) from the representation of a given image or volume.</td>
                 </tr>
             </tbody>
         </table>
@@ -78,7 +76,7 @@
             <ul>
                     <li> ROI-C1: prediction of the origin brain region of a sample within a same subvolume
                 <li> ROI-C2: evaluation of generalization of the prediction with different test subvolumes
-                <li> ROI-C3: evaluation of performance of prediction when tested with more subvolumes
+                <li> ROI-C3: evaluation of performance of prediction when trained with more subvolumes
             </ul>
             <strong>Classes: </strong>Somatosensory Cortex (CTX), Striatum (STR), Thalamus (VP) and Zona Incerta (ZI)
             <br>
@@ -432,15 +430,24 @@
 
     <div id="footer">
         <div class="lab-flexbox">
-            <img src="images/nerds_logo.png" alt="NerDS Lab Logo" class="lab-logo">
-            <p>Neural Data Science (NerDS) Lab, Georgia Institute of Technology</p>
-        </div>
-        <div class="lab-flexbox">
-            <img src="images/boss_logo.png" alt="BossDB Logo" class="lab-logo">
-            <p>Brain Observatory Storage Service & Database (BossDB), Johns Hopkins University</p>
+            <div class="item">
+                <h3 style="text-align:center"><a href="https://dyerlab.gatech.edu/" target="_blank">Neural Data Science Lab</a><br>Georgia Institute of Technology</h3>
+                <p><strong>Contributors:</strong><br>Jorge Quesada, Lakshmi Sathidevi, Ran Liu, Nauman Ahad, Joy M. Jackson, Mehdi Azabou, Jingyun Xiao, Christopher Liding, Carolina Urzay, Eva L. Dyer</p>
+            </div>
+            <div class="item">
+                <img src="images/nerds_logo.png" alt="NerDS Lab Logo" class="lab-logo">
+            </div>
+            <div class="item">
+                <img src="images/boss_logo.png" alt="BossDB Logo" class="lab-logo">
+            </div>
+            <div class="item">
+                <h3 style="text-align:center"><a href="https://bossdb.org/" target="_blank">Brain Observatory Storage Service & Database</a><br>Johns Hopkins University Applied Physics Laboratory</h3>
+                <p><strong>Contributors:</strong><br>William Gray-Roncal<br>Erik C. Johnson</p>
+            </div>
+            
         </div>
 
-        <p>For inquiries, contact Eva L. Dyer (evadyer@gatech.edu), Erik C. Johnson (erik.c.johnson@jhuapl.edu), and Jorge Quesada (jpacora3@gatech.edu).</p>
+        <p>For inquiries, contact Eva L. Dyer (evadyer@gatech.edu), Erik C. Johnson (erik.c.johnson@jhuapl.edu), or Jorge Quesada (jpacora3@gatech.edu).</p>
         <p>Website hosted on <a href="https://github.com/MTNeuro/mtneuro.github.io" target="_blank">Github</a>. Updated June 2022.</p>
     </div>
 
