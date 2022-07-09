@@ -25,7 +25,14 @@
         <p><img src="images/dataset2.png" alt="Brain Regions" id="dataset2-img"></p>
         <hr>
         <h2><strong>Abstract</strong></h2>
-        <p>There are multiple scales of abstraction from which we can describe the same image, depending on whether we are focusing on fine-grained details or a more global attribute of the image. In brain mapping, learning to automatically parse  images to build representations of <em>both</em> small-scale features (e.g., the presence of cells or blood vessels) and global properties of an image (e.g., source brain region) is a crucial and open challenge. However, most existing datasets and benchmarks for neuroanatomy consider only a single downstream task at a time. We introduce a new dataset, annotations, and multiple downstream tasks that provide diverse ways to readout information about brain structure and architecture from the same image. Our multi-task neuroimaging benchmark (MTNeuro) is built on volumetric, micrometer-resolution X-ray microtomography imaging of a large thalamocortical section of mouse brain, encompassing multiple cortical and subcortical regions, that reveals dense reconstructions of the underlying microstructure (i.e., cell bodies, vasculature, and axons). We generated a number of different prediction challenges and evaluated several supervised and self-supervised models for brain-region prediction and pixel-level semantic segmentation of microstructures.  Our experiments not only highlight the rich heterogeneity of this dataset, but also provide insights into how self-supervised approaches can be used to learn representations that  capture multiple attributes of a single image and perform well on a variety of downstream tasks.</p>
+        <p>MTNeuro introduces a new dataset, annotations, and multiple downstream tasks that provide diverse ways to readout <em>both</em> 
+            macroscopic and microscopic brain architectural information from the same image. This multi-task neuroimaging benchmark is built on 
+            volumetric, micrometer-resolution X-ray microtomography imaging of a large thalamocortical section of mouse brain, which encompasses 
+            multiple cortical and subcortical regions and reveals dense reconstructions of the underlying microstructure (i.e., cell bodies, 
+            vasculature, and axons). We generated a number of different prediction challenges and evaluated several supervised and self-supervised 
+            models for brain-region prediction and pixel-level semantic microstructural segmentation. Our experiments not only highlight the rich 
+            heterogeneity of this dataset, but also provide insights into how self-supervised approaches can be used to learn representations 
+            that capture multiple attributes of a single image and perform well on a variety of downstream tasks.</p>
         <hr>
         <h2><strong>Key Features</strong></h2>
         <ul>
@@ -38,8 +45,8 @@
         <h2><strong>Dataset</strong></h2>
         <p>We built our benchmark tasks on a large open access high-resolution (1.17μm isotropic) 3D microscopy database, which contains <strong>macroscopic-level ROI annotations</strong>, as well as 4 three-dimensional 256 × 256 × 360 cutouts from the somatosensory cortex (CTX), striatum (STR), ventral posterior region of thalamus (VP), and the zona incerta (ZI). These volumetric cutouts contain <strong>pixel-level microstuctural labels</strong>, identifying each point as either part of an axon, cell, blood vessel, or background.</p>
         <p>The dataset and all corresponding labels are stored publicly in <a href="https://bossdb.org/project/prasad2020" target="_blank">BossDB</a> and accessed on-demand with <a href="https://pypi.org/project/intern/" target="_blank">Intern</a>, a Python API library.</p>
-        <p>Provided are a <strong>PyTorch DataLoader</strong> for convenient algorithm
-        development and testing, and example <strong>Jupyter Notebooks</strong> to assist with downloading the task cutouts in other frameworks.</p>
+        <p>Provided are a <a href="https://github.com/MTNeuro/MTNeuro/blob/main/MTNeuro/bossdbdataset.py" target="_blank">PyTorch DataLoader</a> for convenient algorithm
+        development and testing, and example <a href="https://github.com/MTNeuro/MTNeuro/tree/main/notebooks" target="_blank">Jupyter Notebooks</a> to assist with downloading the task cutouts in other frameworks.</p>
         <p><img src="images/intern_and_dataloader.png" alt="Intern and DataLoader" id="intern-dataloader-img"></p>
         <hr>
         <h2><strong>Benchmark Tasks</strong></h2>
@@ -74,7 +81,7 @@
             <h3><strong>Task 1</strong>: Image-Level Classification of Brain Area</h3>
             <strong>Goal: </strong>Classification of 4 brain regions:
             <ul>
-                    <li> ROI-C1: prediction of the origin brain region of a sample within a same subvolume
+                <li> ROI-C1: prediction of the origin brain region of a sample within a same subvolume
                 <li> ROI-C2: evaluation of generalization of the prediction with different test subvolumes
                 <li> ROI-C3: evaluation of performance of prediction when trained with more subvolumes
             </ul>
@@ -97,6 +104,7 @@
                 <li> 3D classification: train with volumetric samples
                 <li> 2D classification: train with image samples (the third dimension corresponds to the sample index)
             </ul>
+            <p>Get started with executing Task 1 here: [<a href="https://github.com/MTNeuro/MTNeuro/blob/main/notebooks/task1_getting_started.ipynb" target="_blank">Jupyter Notebook</a>]</p>
             <br>
         </div>
 
@@ -115,6 +123,7 @@
             <br>
             <strong>Modality:</strong> 2D classification: train with image samples (the third dimension corresponds to the sample index)
             <br>
+            <p>Get started with executing Task 2 here: [<a href="https://github.com/MTNeuro/MTNeuro/blob/main/notebooks/task2_getting_started.ipynb" target="_blank">Jupyter Notebook</a>]</p>
             <br>
         </div>
 
@@ -126,6 +135,7 @@
             <br>
             <strong>Modality: </strong>Exploration of readout of contextual features from the latent space learned by self-supervised models in Task 1
             <br>
+            <p>Get started with executing Task 3 here: [<a href="https://github.com/MTNeuro/MTNeuro/blob/main/notebooks/task3_getting_started.ipynb" target="_blank">Jupyter Notebook</a>]</p>
             <br>
         </div>
 
@@ -408,6 +418,9 @@
                 </tr>
             </tbody>
         </table>
+
+        <p>The model weights for Task 3 are the same as for Task 1. Download them here: [<a href="https://www.dropbox.com/sh/blxwr8r521vechs/AAAXSRYrWhOuPAoAy7S-c9Mla?dl=0" target="_blank">Dropbox</a>]</p>
+
         <br>
         <hr>
 
@@ -448,7 +461,7 @@
         </div>
 
         <p>For inquiries, contact Eva L. Dyer (evadyer@gatech.edu), Erik C. Johnson (erik.c.johnson@jhuapl.edu), or Jorge Quesada (jpacora3@gatech.edu).</p>
-        <p>Website hosted on <a href="https://github.com/MTNeuro/mtneuro.github.io" target="_blank">Github</a>. Updated June 2022.</p>
+        <p>Website hosted on <a href="https://github.com/MTNeuro/mtneuro.github.io" target="_blank">Github</a>. Updated July 2022.</p>
     </div>
 
     <script src="task_descriptions.js"></script>
