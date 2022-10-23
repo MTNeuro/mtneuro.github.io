@@ -1,15 +1,5 @@
 <!DOCTYPE html>
 <html>
-
-    <!-- TO DO:
-    
-    Remove old data access Github links
-    Change data access Jupyter notebook links
-
-    Work on JavaScript!
-
-    -->
-
     <head>
         <title>MTNeuro</title>
         <link rel="stylesheet" type="text/css" href="styles.css" />
@@ -18,8 +8,7 @@
     <body>
         <div id="headers">
             <h1><strong>MTNeuro: A Benchmark for Evaluating Representations of Brain Structure Across Multiple Levels of Abstraction</strong></h1>
-            <br>
-            <h2>[<a href="https://openreview.net/pdf?id=5xuowSQ17vy" target="_blank">Paper</a>] [<a href="https://github.com/MTNeuro/MTNeuro" target="_blank">Github</a>] [<a href="https://bossdb.org/project/prasad2020" target="_blank">Dataset</a>]</h2>
+            <h2><strong><a href="https://openreview.net/pdf?id=5xuowSQ17vy" target="_blank">Paper</a> | <a href="https://github.com/MTNeuro/MTNeuro" target="_blank">Code</a> | <a href="https://bossdb.org/project/prasad2020" target="_blank">Dataset</a></strong></h2>
         </div>
         <p><img src="images/dataset.png" alt="Dataset" id="dataset-img"></p>
         <p><img src="images/dataset2.png" alt="Brain Regions" id="dataset2-img"></p>
@@ -124,6 +113,7 @@
             <strong>Modality:</strong> 2D classification: train with image samples (the third dimension corresponds to the sample index)
             <br>
             <p>Get started with executing Task 2 here: [<a href="https://github.com/MTNeuro/MTNeuro/blob/main/notebooks/task2_getting_started.ipynb" target="_blank">Jupyter Notebook</a>]</p>
+            <img src="images/task2.png" alt="Task 2 Segmentation" class="specific-task-img">
             <br>
         </div>
 
@@ -136,6 +126,9 @@
             <strong>Modality: </strong>Exploration of readout of contextual features from the latent space learned by self-supervised models in Task 1
             <br>
             <p>Get started with executing Task 3 here: [<a href="https://github.com/MTNeuro/MTNeuro/blob/main/notebooks/task3_getting_started.ipynb" target="_blank">Jupyter Notebook</a>]</p>
+            <img src="images/task3.png" alt="Task 3 Learned Representations" class="specific-task-img">
+            <br>
+            <p class="caption">Visualization of the representations learned by models trained in Task 1. Global semantic attributes for each image are visualized as different colors.</p>
             <br>
         </div>
 
@@ -155,19 +148,19 @@
                 <tr>
                     <td>Supervised<br>Sup w/ Mixup</td>
                     <td>0.88 ± 0.03<br>0.90 ± 0.04</td>
-                    <td>0.77 ± 0.04<br>0.78 ± 0.04</td>
+                    <td>0.77 ± 0.03<br>0.78 ± 0.03</td>
                     <td>0.88 ± 0.02<br>0.90 ± 0.02</td>
                 </tr>
                 <tr>
                     <td>BYOL<br>MYOW<br>MYOW-m</td>
                     <td>0.88 ± 0.02<br>0.90 ± 0.02<br>0.94 ± 0.02</td>
-                    <td>0.75 ± 0.03<br>0.77 ± 0.06<br>0.76 ± 0.04</td>
+                    <td>0.76 ± 0.02<br>0.78 ± 0.05<br>0.78 ± 0.03</td>
                     <td>0.97 ± 0.01<br>0.98 ± 0.01<br>0.98 ± 0.01</td>
                 </tr>
                 <tr>
                     <td>PCA<br>NMF</td>
                     <td>0.59<br>0.62</td>
-                    <td>0.24<br>0.25</td>
+                    <td>0.25<br>0.27</td>
                     <td>0.07<br>0.50</td>
                 </tr>
             </tbody>
@@ -250,10 +243,10 @@
                 </tr>
                 <tr class="small-font">
                     <td>PAN (F1)<br>PAN (IoU)</td>
-                    <td>0.97<br>0.94</td>
+                    <td>0.98<br>0.96</td>
                     <td>0.60<br>0.46</td>
                     <td>0.80<br>0.66</td>
-                    <td>0.79 ± 0.044<br>0.69 ± 0.052</td>
+                    <td>0.79 ± 0.035<br>0.69 ± 0.039</td>
                     <td>0.95<br>0.85</td>
                     <td>0.69<br>0.53</td>
                     <td>0.80<br>0.67</td>
@@ -335,11 +328,9 @@
             </tbody>
         </table>
 
-        <h4> Task 2 Notebook: Using Pretrained Weights </h4>
-        <p>Refer to this quick notebook for the easy download and application of the Task 2 model weights: [<a href="https://github.com/MTNeuro/MTNeuro/blob/temp_branch/notebooks/task2_using_pretrained_models.ipynb" target="_blank">Notebook: Using Pretrained Weights</a>] <br>
-        It also demonstrates the use of the additional [<a href="https://github.com/MTNeuro/MTNeuro/tree/temp_branch/notebooks/scripts" target="_blank">utility scripts</a>] included.</p>
-        <p>Or alternatively, download the model weights for Task 2 manually here: [<a href="https://www.dropbox.com/sh/pzza5nuh93r9s18/AAAZsISLUl1H_u3U0TDSeOjNa?dl=0" target="_blank">Dropbox</a>]</p>
-        
+        <p>Execute Task 2 on example test slices with our pretrained model weights here: [<a href="https://github.com/MTNeuro/MTNeuro/blob/temp_branch/notebooks/task2_using_pretrained_models.ipynb" target="_blank">Jupyter Notebook: Using Pretrained Weights</a>] <br>
+        It also demonstrates the use of the additional [<a href="https://github.com/MTNeuro/MTNeuro/tree/temp_branch/notebooks/scripts" target="_blank">utility scripts</a>] included.<br>
+        Or alternatively, download the model weights for Task 2 manually here: [<a href="https://www.dropbox.com/sh/pzza5nuh93r9s18/AAAZsISLUl1H_u3U0TDSeOjNa?dl=0" target="_blank">Dropbox</a>]</p>
         
         <br>
         <h3><strong>Task 3</strong>: Multi-task Decoding from Frozen Representations</h3>
