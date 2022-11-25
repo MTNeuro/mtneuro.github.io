@@ -78,15 +78,15 @@
             <br>
             <strong>Training sets:</strong>
             <ul>
-                <li> ROI-C1: 256x256x300 sub-volumes A (blue) of the 4 brain regions
-                <li> ROI-C2: 256x256x300 sub-volumes A (blue) of the 4 brain regions
-                <li> ROI-C3: 256x256x300 sub-volumes A (blue) and 256x256x360 sub-volumes B (yellow) of the 4 brain regions
+                <li> ROI-C1: First 300 slices from sub-volume sub-volume A (marked '1' in multi-task illustration) from each brain region.
+                <li> ROI-C2: First 300 slices from sub-volume A from each brain region.
+                <li> ROI-C3: First 300 slices from sub-volume A and all 360 slices from sub-volume B (marked '2') from each brain region.
             </ul>
             <strong>Testing sets:</strong>
             <ul>
-                <li> ROI-C1: 256x256x50 sub-volumes A of the 4 brain regions
-                <li> ROI-C2: 256x256x50 sub-volumes B, C and D of the 4 brain regions
-                <li> ROI-C3: 256x256x50 sub-volumes C and D of the 4 brain regions
+                <li> ROI-C1: Last 50 slices from sub-volume A from each brain region.
+                <li> ROI-C2: All 360 slices from sub-volumes C and D (marked '3' and '4' in multi-task illustration) from each brain region.
+                <li> ROI-C3: All 360 slices from sub-volumes C and D from each brain region.
             </ul>
             <strong>Modalities:</strong>
             <ul>
